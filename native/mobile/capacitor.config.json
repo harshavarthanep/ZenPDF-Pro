@@ -1,0 +1,11 @@
+{
+  "appId": "com.h24creationz.zenpdfpro",
+  "appName": "ZenPDF Pro",
+  "webDir": "www",
+  "android": { "allowMixedContent": false, "captureInput": true, "webContentsDebuggingEnabled": false },
+  "ios": { "contentInset": "never", "scrollEnabled": false },
+  "plugins": {
+    "SplashScreen": { "launchShowDuration": 600, "launchAutoHide": true, "backgroundColor": "#f6f6f3", "showSpinner": false, "androidScaleType": "CENTER_CROP" },
+    "StatusBar": { "overlaysWebView": false }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "zenpdf-pro-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ZenPDF Pro for Android and iPhone/iPad — built by H24 Creationz",
+  "scripts": {
+    "prepare-www": "node ../shared/prepare-www.mjs www",
+    "sync": "npm run prepare-www && npx cap sync"
+  },
+  "dependencies": {
+    "@capacitor/android": "7.4.2",
+    "@capacitor/browser": "7.0.1",
+    "@capacitor/core": "7.4.2",
+    "@capacitor/filesystem": "7.1.4",
+    "@capacitor/ios": "7.4.2",
+    "@capacitor/share": "7.0.2",
+    "@capacitor/splash-screen": "7.0.1",
+    "@capacitor/status-bar": "7.0.1"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "3.0.5",
+    "@capacitor/cli": "7.4.2"
+  }
+}

@@ -1,0 +1,43 @@
+{
+ "app": "ZenPDF Pro",
+ "kind": "memory-pack",
+ "format": 1,
+ "author": "H24 Creationz",
+ "id": "india",
+ "name": "India",
+ "version": "1.0.0",
+ "icon": "idcard",
+ "region": "IN",
+ "description": "Indian IDs — PAN, Aadhaar, GSTIN, IFSC, UPI, PIN code, Indian mobile numbers, day-first dates",
+ "builtinChecks": [
+  "india"
+ ],
+ "vocabulary": [
+  "#general",
+  "provider_pan|text|PAN;PAN Number;PAN No;PAN Card Number;Income Tax PAN;PAN of Applicant",
+  "provider_aadhaar|text|Aadhaar;Aadhaar Number;Aadhaar No;Aadhar Number;UID Number;Aadhaar Card Number;UIDAI Number;Aadhaar (UID)",
+  "provider_voter_id|text|Voter;Voter ID Number;EPIC Number;Election Card Number;Voter Card Number",
+  "provider_uan|text|UAN;Universal Account Number;UAN Number;PF UAN",
+  "provider_pf_number|text|PF Number;PF Account Number;Provident Fund Number;EPF Number;EPF Account Number",
+  "provider_esic_number|text|ESIC Number;ESI Number;ESIC IP Number",
+  "provider_tax_resident_other|yesno|Tax Resident of any country other than India;Tax Residency Outside India;FATCA Declaration;US Person",
+  "provider_nri_status|choice|Residential Status;Resident Status;Resident / NRI;Resident Indian / NRI;Tax Status",
+  "bank_ifsc|text|IFSC;IFSC Code;IFS Code;Bank IFSC;Branch IFSC Code;IFSC of Branch",
+  "bank_micr|text|MICR;MICR Code;MICR Number",
+  "bank_upi_id|text|UPI ID;UPI;VPA;UPI Address;Virtual Payment Address",
+  "group_gstin|text|GSTIN;GST Number;GST No;GST Registration Number;GSTIN/UIN;GST Identification Number",
+  "group_pan|text|Company PAN;Business PAN;Firm PAN;PAN of Company;Entity PAN",
+  "group_udyam|text|Udyam Registration Number;MSME Registration Number;Udyog Aadhaar;Udyam Number;MSME Number",
+  "group_iec|text|IEC;Import Export Code;IEC Code;IEC Number"
+ ],
+ "rules": [
+  "# India — edit freely or add your own lines",
+  "check \"Voter ID\" format AAA9999999 : A voter ID (EPIC) is 3 letters and 7 digits",
+  "check \"Passport number\" format A9999999 : An Indian passport number is 1 letter and 7 digits",
+  "check \"UAN\" digits 12 : A UAN has 12 digits",
+  "check \"MICR\" digits 9 : A MICR code has 9 digits",
+  "check \"Date of birth\" date format DD/MM/YYYY : Write dates as DD/MM/YYYY",
+  "fill \"Country\" = India",
+  "fill \"Nationality\" = Indian"
+ ]
+}
