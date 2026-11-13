@@ -104,7 +104,13 @@ jobs:
         with: { node-version: '${{ env.NODE_VERSION }}' }
       - uses: actions/setup-java@v4
         with: { distribution: 'temurin', java-version: '21' }
-      - uses: android-actions/setup-android@v3
+      # GitHub's Linux computer already has the Android SDK installed —
+      # just accept its licences (the old setup-android step broke when
+      # Google removed the "tools" package).
+      - name: Android SDK
+        run: |
+          echo "Android SDK at $ANDROID_HOME"
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
       - name: Bundle the engines
         working-directory: native/shared
         run: npm install --no-audit --no-fund
