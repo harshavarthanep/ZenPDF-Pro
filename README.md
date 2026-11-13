@@ -3,7 +3,7 @@
 **Every PDF tool — edit, sign, fill, merge, compress, convert — private and on your device.**
 Designed and built by **H24 Creationz**.
 
-- 🌐 Web app: `https://harshavrthanep.github.io/ZenPDF-Pro/`
+- 🌐 Web app: `https://harshavarthanep.github.io/ZenPDF-Pro/`
 - ⬇️ Download page: `https://harshavarthanep.github.io/ZenPDF-Pro/download.html`
 - 💻 Apps: Windows (Intel & AMD, plus ARM) · Mac (Intel & Apple Silicon) · Linux · Android · iPhone/iPad (Home Screen)
 
