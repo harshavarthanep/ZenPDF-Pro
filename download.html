@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ZenPDF Pro — Every PDF tool, on your device · Windows, macOS, Linux, Android &amp; iPhone</title>
+<meta name="description" content="ZenPDF Pro: edit, sign, fill, merge, compress and convert PDFs — privately, offline, on your own device. Smart Autofill fills forms in seconds. Download for Windows, macOS, Linux and Android, or try it online.">
+<meta name="author" content="H24 Creationz">
+<meta property="og:title" content="ZenPDF Pro — Every PDF tool, on your device">
+<meta property="og:description" content="Edit, sign, fill and convert PDFs privately and offline. Smart Autofill fills any form in seconds.">
+<meta property="og:image" content="media/home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0f16" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232997ff'/%3E%3Cstop offset='1' stop-color='%230058d0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Cpath d='M22 13h14l11 11v25a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4V17a4 4 0 0 1 4-4z' fill='%23fff'/%3E%3Cpath d='M36 13v9a2 2 0 0 0 2 2h9' fill='%23cfe2ff'/%3E%3Cpath d='M25.5 32h13l-13 12h13' stroke='%230a6cf0' stroke-width='3.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="zenpdf-apple-touch-icon.png">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f5f7fb; --bg2:#eaeef6; --card:#ffffff; --ink:#14161d; --muted:#626775; --line:#e3e8f1;
+  --accent:#0a6ff0; --accent2:#2b7cf5; --soft:#e7f0ff; --ok:#1f9d63;
+  --shadow:0 30px 70px -28px rgba(20,60,150,.32),0 10px 26px -12px rgba(20,40,100,.16);
+  --grad:linear-gradient(90deg,#2997ff,#0a6ff0 50%,#5b5cf6);
+  --radius:20px;
+}
+@media (prefers-color-scheme:dark){
+  :root{ color-scheme:dark;
+    --bg:#0d0f16; --bg2:#151926; --card:#171b28; --ink:#f1f3f9; --muted:#a2a8b8; --line:#262c3d;
+    --accent:#3b8bff; --accent2:#5c9dff; --soft:#1b2640; --ok:#3ccf8e;
+    --shadow:0 30px 70px -28px rgba(0,0,0,.7),0 10px 26px -12px rgba(0,0,0,.5);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Inter,sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+code{font-size:.9em;background:var(--bg2);padding:1px 6px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2)}
+h1,h2,h3{letter-spacing:-.03em;line-height:1.08;margin:0}
+h2{font-size:clamp(30px,4.4vw,48px)}
+.lead{color:var(--muted);font-size:clamp(17px,1.8vw,20px);max-width:640px}
+section{padding:88px 0}
+.center{text-align:center}.center .lead{margin-left:auto;margin-right:auto}
+
+.glow{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+.glow i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55}
+.glow i:nth-child(1){width:520px;height:520px;background:#bcd7ff;left:-120px;top:-80px}
+.glow i:nth-child(2){width:480px;height:480px;background:#cfd2ff;right:-140px;top:120px}
+@media (prefers-color-scheme:dark){.glow i{opacity:.18}}
+
+header{position:sticky;top:0;z-index:30;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(1.6) blur(16px);-webkit-backdrop-filter:saturate(1.6) blur(16px);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+.nav{display:flex;align-items:center;gap:18px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;text-decoration:none;letter-spacing:-.02em}
+.logo svg{width:30px;height:30px;filter:drop-shadow(0 3px 8px rgba(10,111,240,.3))}
+.logo b{color:var(--accent);font-weight:800}
+.nav nav{display:flex;gap:4px;margin-left:auto}
+.nav nav a{text-decoration:none;color:var(--muted);font-weight:550;font-size:15px;padding:8px 12px;border-radius:10px}
+.nav nav a:hover{color:var(--ink);background:var(--bg2)}
+@media (max-width:820px){.nav nav{display:none}.nav .btn{margin-left:auto}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;font:inherit;font-weight:700;text-decoration:none;border-radius:14px;padding:13px 20px;transition:transform .15s,box-shadow .2s,background .2s,opacity .2s;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 14px 30px -12px rgba(10,111,240,.7)}
+.btn-primary:hover{box-shadow:0 18px 38px -12px rgba(10,111,240,.85)}
+.btn-ghost{background:var(--card);color:var(--ink);box-shadow:0 0 0 1px var(--line) inset}
+.btn-ghost:hover{background:var(--bg2)}
+.btn-sm{padding:9px 14px;border-radius:11px;font-size:14px}
+.btn .meta{font-weight:550;opacity:.8;font-size:.86em}
+.btn[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none}
+.btn.is-loading{pointer-events:none}
+.spin{display:inline-block;width:17px;height:17px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:spin .7s linear infinite;flex:none;vertical-align:-3px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.skel{display:inline-block;width:54px;height:.9em;border-radius:6px;vertical-align:-1px;background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(255,255,255,.45),rgba(255,255,255,.15));background-size:200% 100%;animation:sh 1.2s infinite}
+.btn-ghost .skel{background:linear-gradient(90deg,var(--line),var(--bg2),var(--line));background-size:200% 100%}
+@keyframes sh{to{background-position:-200% 0}}
+
+.hero{position:relative;padding:72px 0 40px;isolation:isolate}
+.hero-grid{display:grid;grid-template-columns:1.02fr 1.1fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(42px,6.2vw,74px);margin:16px 0 18px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 14px}
+.hero-meta{color:var(--muted);font-size:14px}
+.hero-meta a{color:var(--accent2);font-weight:600;text-decoration:none}
+.devices{position:relative;padding:0 40px 50px 0}
+.win{border-radius:14px;overflow:hidden;background:var(--card);box-shadow:var(--shadow),0 0 0 1px var(--line)}
+.win .bar{display:flex;align-items:center;gap:8px;height:32px;padding:0 12px;background:var(--bg2);font-size:12px;font-weight:600;color:var(--muted)}
+.win .bar svg{width:15px;height:15px}
+.win .bar span:last-child{margin-left:auto;letter-spacing:12px;opacity:.6}
+.phone{position:absolute;right:0;bottom:0;width:27%;min-width:120px;border-radius:30px;background:#121117;padding:7px;box-shadow:var(--shadow)}
+.phone img{border-radius:24px}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.devices{max-width:620px}}
+
+.platforms{display:flex;flex-wrap:wrap;gap:10px 26px;justify-content:center;color:var(--muted);font-weight:600;font-size:15px;padding:26px 22px 0}
+.platforms span{display:flex;align-items:center;gap:8px}
+.platforms svg{width:18px;height:18px}
+
+.video{margin-top:38px;border-radius:22px;overflow:hidden;box-shadow:var(--shadow),0 0 0 1px var(--line);background:#000;aspect-ratio:16/9;position:relative}
+.video video{width:100%;height:100%;display:block;object-fit:cover}
+.vtabs{display:flex;gap:8px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.vtabs button{font:inherit;font-size:14px;font-weight:650;color:var(--muted);background:var(--card);border:0;box-shadow:0 0 0 1px var(--line) inset;border-radius:999px;padding:8px 16px;cursor:pointer}
+.vtabs button[aria-pressed="true"]{color:#fff;background:var(--accent);box-shadow:none}
+.video.vert{aspect-ratio:9/16;max-width:420px;margin-left:auto;margin-right:auto}
+
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.why .card h3{font-size:19px;margin:14px 0 8px;letter-spacing:-.02em}
+.why .card p{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+.ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--soft);color:var(--accent);flex:none}
+.ico svg{width:22px;height:22px}
+@media (max-width:1000px){.why{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.why{grid-template-columns:1fr}}
+
+.feature{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:center;margin-top:72px}
+.feature.flip .ftext{order:2}
+.feature h3{font-size:clamp(26px,3.2vw,36px);margin:10px 0 12px}
+.feature p{color:var(--muted);margin:0 0 14px}
+.feature ul{margin:0;padding:0;list-style:none}
+.feature li{padding:6px 0 6px 28px;position:relative}
+.feature li::before{content:"";position:absolute;left:4px;top:14px;width:10px;height:10px;border-radius:50%;background:var(--grad)}
+.shot{position:relative}
+.shot .phone{width:24%;right:-14px;bottom:-26px}
+@media (max-width:900px){.feature{grid-template-columns:1fr;gap:26px}.feature.flip .ftext{order:0}.shot .phone{right:4px}}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.stat{text-align:center;padding:26px 16px}
+.stat b{display:block;font-size:clamp(30px,4vw,44px);letter-spacing:-.03em;line-height:1}
+.stat span{color:var(--muted);font-size:14.5px;font-weight:550}
+@media (max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+.dl-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px}
+.release{font-size:14px;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;display:flex;gap:8px;align-items:center}
+.release b{color:var(--ink)}
+.release a{color:var(--accent2);font-weight:600}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:none}
+.dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:34px}
+.os{display:flex;flex-direction:column;gap:12px;position:relative;transition:box-shadow .2s,border-color .2s}
+.os.mine{border-color:var(--accent);box-shadow:0 0 0 3px var(--soft)}
+.os .tag{position:absolute;top:16px;right:16px;font-size:12px;font-weight:700;color:var(--accent);background:var(--soft);padding:3px 10px;border-radius:999px;display:none}
+.os.mine .tag{display:block}
+.os .top{display:flex;align-items:center;gap:12px}
+.os h3{font-size:21px}
+.req{font-size:14px;color:var(--muted);margin:0}
+.os .btns{display:flex;flex-direction:column;gap:8px;margin-top:auto}
+.os .btns .btn{width:100%;white-space:normal;text-align:center}
+.os details{font-size:14px;color:var(--muted)}
+.os summary{cursor:pointer;font-weight:600;color:var(--ink)}
+.os ol{margin:8px 0 0;padding-left:20px}
+@media (max-width:1000px){.dl{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.dl{grid-template-columns:minmax(0,1fr)}}
+
+.faq{max-width:820px;margin:40px auto 0}
+.faq details{border-bottom:1px solid var(--line);padding:18px 4px}
+.faq summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:22px;color:var(--accent);line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq p{color:var(--muted);margin:10px 0 0}
+
+.final{text-align:center;background:var(--card);border:1px solid var(--line);border-radius:28px;padding:56px 24px;position:relative;overflow:hidden;isolation:isolate}
+footer{padding:36px 0 calc(40px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+footer a{color:var(--muted)}
+
+.sheet-bg{position:fixed;inset:0;background:rgba(10,15,35,.45);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:50;display:none;align-items:flex-end;justify-content:center;padding:16px}
+.sheet-bg.open{display:flex}
+@media (min-width:640px){.sheet-bg{align-items:center}}
+.sheet{width:min(520px,100%);background:var(--card);border-radius:24px;padding:26px;box-shadow:var(--shadow);border:1px solid var(--line);animation:up .28s cubic-bezier(.2,.8,.2,1);margin-bottom:env(safe-area-inset-bottom,0px)}
+@keyframes up{from{transform:translateY(24px);opacity:0}}
+.sheet h3{font-size:22px;margin:12px 0 4px}
+.sheet .file{display:flex;align-items:center;gap:12px;background:var(--bg2);border-radius:14px;padding:12px 14px;margin:14px 0 16px;font-size:14px}
+.sheet .file b{display:block;color:var(--ink);font-size:15px;word-break:break-all}
+.sheet .state{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+.sheet ol{color:var(--muted);padding-left:20px;margin:6px 0 18px;font-size:15px}
+.sheet .row{display:flex;gap:10px;flex-wrap:wrap}
+.sheet .row .btn{flex:1}
+.check{width:22px;height:22px;border-radius:50%;background:var(--ok);display:grid;place-items:center;color:#fff;font-size:13px;flex:none}
+.small{font-size:13px;color:var(--muted)}
+.small a{color:var(--accent2)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="zg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2997ff"/><stop offset="1" stop-color="#0058d0"/></linearGradient>
+  <symbol id="zlogo" viewBox="0 0 64 64"><rect width="64" height="64" rx="15" fill="url(#zg)"/><path d="M22 13h14l11 11v25a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4V17a4 4 0 0 1 4-4z" fill="#fff"/><path d="M36 13v9a2 2 0 0 0 2 2h9" fill="#cfe2ff"/><path d="M25.5 32h13l-13 12h13" stroke="#0a6cf0" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top"><svg aria-hidden="true"><use href="#zlogo"/></svg><span>ZenPDF <b>Pro</b></span></a>
+    <nav>
+      <a href="#demo">Demo</a><a href="#why">Why ZenPDF Pro</a><a href="#features">Features</a><a href="#download">Download</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-ghost btn-sm" data-try href="./">Try online</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="glow"><i></i><i></i></div>
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Private · Offline · No account</div>
+        <h1>Every PDF tool, <span class="grad">on your device.</span></h1>
+        <p class="lead">Edit, sign, fill, merge, compress and convert PDFs — without uploading a single file. Smart Autofill fills any form in seconds and learns from every fix you make.</p>
+        <div class="cta">
+          <button class="btn btn-primary" id="hero-dl"><span class="lbl">Download</span> <span class="meta"><span class="skel"></span></span></button>
+          <a class="btn btn-ghost" data-try href="./">Try online — no install</a>
+        </div>
+        <div class="hero-meta"><span id="hero-req"></span> · <a href="#download">Other platforms</a></div>
+      </div>
+      <div class="devices">
+        <div class="win">
+          <div class="bar"><svg aria-hidden="true"><use href="#zlogo"/></svg>ZenPDF Pro<span>–▢✕</span></div>
+          <img src="media/home.jpg" width="1600" height="1000" alt="ZenPDF Pro home screen with recent files and Smart Autofill">
+        </div>
+        <div class="phone"><img src="media/m-filled.jpg" width="600" height="1299" alt="A job application filled by Smart Autofill on a phone"></div>
+      </div>
+    </div>
+    <div class="platforms" aria-label="Available on">
+      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zm0 13 7.5 1.1v-7H3zM11.5 4.3 21 3v8.5h-9.5zm0 15.4L21 21v-8.4h-9.5z"/></svg>Windows</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg>macOS</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12 15h5"/></svg>Linux</span>
+      <span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 9h12v8a2 2 0 0 1-2 2h-1v3h-2v-3h-2v3H9v-3H8a2 2 0 0 1-2-2zm-3 0h2v7H3zm16 0h2v7h-2zM7.5 8a4.5 4.5 0 0 1 9 0z"/></svg>Android</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>iPhone &amp; iPad</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Web</span>
+    </div>
+  </section>
+
+  <section id="demo" style="padding-top:40px">
+    <div class="wrap center">
+      <div class="eyebrow">See it in action</div>
+      <h2 style="margin-top:12px">ZenPDF Pro in <span class="grad">30 seconds.</span></h2>
+      <div class="video" id="video">
+        <video id="demo-video" autoplay muted loop playsinline controls preload="auto" poster="media/zenpdf-pro-demo-poster.jpg" width="1920" height="1080">
+          <source src="media/ZenPDF-Pro-30s-Horizontal.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="vtabs" role="group" aria-label="Choose a video">
+        <button type="button" aria-pressed="true" data-v="media/ZenPDF-Pro-30s-Horizontal.mp4" data-p="media/zenpdf-pro-demo-poster.jpg">30-second tour</button>
+        <button type="button" aria-pressed="false" data-v="media/ZenPDF-Pro-Demo.mp4" data-p="media/zenpdf-pro-demo-poster.jpg">Full demo</button>
+        <button type="button" aria-pressed="false" data-v="media/ZenPDF-Pro-30s-Vertical.mp4" data-p="media/zenpdf-pro-vertical-poster.jpg" data-vert>Phone view</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" style="padding-top:20px">
+    <div class="wrap center">
+      <div class="eyebrow">Why ZenPDF Pro</div>
+      <h2 style="margin:12px 0 14px">Your PDFs, done —<br><span class="grad">without giving them away.</span></h2>
+      <p class="lead">Most PDF websites upload your passport, contracts and bank statements to someone else’s server. ZenPDF Pro does all the work right on your device.</p>
+    </div>
+    <div class="wrap why">
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Private by design</h3><p>Files never leave your device. Nothing is uploaded, nothing is tracked.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12.5a7 7 0 0 1 14 0M8.5 12.5a3.5 3.5 0 0 1 7 0"/><circle cx="12" cy="17" r="1.2" fill="currentColor"/><path d="M3 3l18 18"/></svg></div><h3>Works offline</h3><p>The apps carry every engine inside. No internet? Everything still works.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div><h3>Smart Autofill</h3><p>Fills forms from your profile, a CV, a spreadsheet or another filled form.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.6"/><path d="M4 4v4.6h4.6M12 8v4l3 2"/></svg></div><h3>Learns as you go</h3><p>Fix an answer once — the next form fills itself right. Every time.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.8"/></svg></div><h3>42 tools, one app</h3><p>Merge, split, compress, convert, edit text, sign, redact, protect and more.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><h3>Made for every country</h3><p>No assumptions about where you live. Add a country pack only when you need it.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h10M4 12h16M4 18h7"/><path d="m16 15 2 2 4-4"/></svg></div><h3>Your own rules</h3><p>Write simple checks like <code>check "Passport" format A9999999</code> — with examples built in.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4" width="13" height="10" rx="1.6"/><rect x="15" y="9" width="6.5" height="11" rx="1.6"/><path d="M6 18h6"/></svg></div><h3>Every device</h3><p>Windows, macOS, Linux, Android, iPhone and the web — the same app everywhere.</p></div>
+    </div>
+  </section>
+
+  <section id="features" style="padding-top:20px">
+    <div class="wrap">
+      <div class="feature rv">
+        <div class="ftext">
+          <div class="eyebrow">Smart Autofill</div>
+          <h3>Any form, filled <span class="grad">in seconds.</span></h3>
+          <p>Open a form and pick where the answers come from. ZenPDF Pro reads every box, matches it to your details and shows you a review before anything is written.</p>
+          <ul><li>From a saved profile, a CV, a spreadsheet or a filled form</li><li>“Sure” and “Likely” labels so you know what to check</li><li>Every country’s dates, phones and postal codes</li></ul>
+        </div>
+        <div class="shot"><div class="win"><div class="bar"><svg aria-hidden="true"><use href="#zlogo"/></svg>Job-Application.pdf<span>–▢✕</span></div><img src="media/review.jpg" width="1600" height="1000" loading="lazy" alt="Review before filling: answers matched from a profile"></div></div>
+      </div>
+
+      <div class="feature flip rv">
+        <div class="ftext">
+          <div class="eyebrow">Learns as you go</div>
+          <h3>Fix it once. <span class="grad">Never again.</span></h3>
+          <p>When you correct an answer, ZenPDF Pro remembers — for that form and for every similar box on new forms. Your memory stays on your device.</p>
+          <ul><li>Remembers corrections form by form</li><li>Understands new labels from what you taught it</li><li>Back up and restore whenever you like</li></ul>
+        </div>
+        <div class="shot"><div class="win"><div class="bar"><svg aria-hidden="true"><use href="#zlogo"/></svg>Job-Application.pdf<span>–▢✕</span></div><img src="media/filled.jpg" width="1600" height="1000" loading="lazy" alt="A form filled in ZenPDF Pro"></div><div class="phone"><img src="media/m-review.jpg" width="600" height="1299" loading="lazy" alt="Reviewing answers on a phone"></div></div>
+      </div>
+
+      <div class="feature rv">
+        <div class="ftext">
+          <div class="eyebrow">Form memory</div>
+          <h3>Your rules. <span class="grad">Any country.</span></h3>
+          <p>Teach ZenPDF Pro the forms you fill most — in plain lines anyone can write — or switch on a country pack. Every piece of memory has its own on/off switch.</p>
+          <ul><li>Checks for IDs, licences, dates and phone numbers</li><li>Fixed answers like nationality or place of signing</li><li>A live tester shows exactly what a rule does</li></ul>
+        </div>
+        <div class="shot"><div class="win"><div class="bar"><svg aria-hidden="true"><use href="#zlogo"/></svg>Settings<span>–▢✕</span></div><img src="media/rules.jpg" width="1600" height="1000" loading="lazy" alt="Writing form rules with a live tester"></div></div>
+      </div>
+
+      <div class="feature flip rv">
+        <div class="ftext">
+          <div class="eyebrow">All in one</div>
+          <h3>42 tools. <span class="grad">One calm app.</span></h3>
+          <p>Everything you reach for in a PDF day, together — and fast, because it all runs right where your files are.</p>
+          <ul><li>Merge, split, reorder, compress and repair</li><li>Word, Excel, PowerPoint and images to and from PDF</li><li>Edit text, sign, redact, watermark and password-protect</li></ul>
+        </div>
+        <div class="shot"><div class="win"><div class="bar"><svg aria-hidden="true"><use href="#zlogo"/></svg>All tools<span>–▢✕</span></div><img src="media/tools.jpg" width="1600" height="1000" loading="lazy" alt="All 42 tools in ZenPDF Pro"></div></div>
+      </div>
+
+      <div class="feature rv">
+        <div class="ftext">
+          <div class="eyebrow">Light or dark</div>
+          <h3>Easy on the eyes, <span class="grad">day or night.</span></h3>
+          <p>A clean, focused design that follows your device’s light or dark setting — on a big screen or a phone.</p>
+          <ul><li>Your files and recent work, one tap away</li><li>Drag and drop thousands of pages at a time</li><li>Keyboard shortcuts for everything</li></ul>
+        </div>
+        <div class="shot"><div class="win"><div class="bar" style="background:#1c1c1e;color:#a1a1a6"><svg aria-hidden="true"><use href="#zlogo"/></svg>ZenPDF Pro<span>–▢✕</span></div><img src="media/home-dark.jpg" width="1600" height="1000" loading="lazy" alt="ZenPDF Pro in dark mode"></div></div>
+      </div>
+
+      <div class="stats rv">
+        <div class="card stat"><b class="grad">42</b><span>PDF tools</span></div>
+        <div class="card stat"><b class="grad">0</b><span>files uploaded</span></div>
+        <div class="card stat"><b class="grad">6</b><span>platforms</span></div>
+        <div class="card stat"><b class="grad">100%</b><span>works offline</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download">
+    <div class="wrap">
+      <div class="dl-head">
+        <div><div class="eyebrow">Download</div><h2 style="margin-top:12px">Get ZenPDF <span class="grad">Pro.</span></h2></div>
+        <div class="release" id="release"><a href="#">See all releases</a></div>
+      </div>
+      <div class="dl" id="dl-grid"></div>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:20px">
+    <div class="wrap center"><div class="eyebrow">FAQ</div><h2 style="margin-top:12px">Questions, <span class="grad">answered.</span></h2></div>
+    <div class="wrap faq">
+      <details><summary>Are my files really never uploaded?</summary><p>Yes. Every tool — editing, Autofill, compressing, converting — runs on your own device. ZenPDF Pro has no server that receives your documents, and it works with the internet switched off.</p></details>
+      <details><summary>Do I need the internet?</summary><p>No. The Windows, macOS, Linux and Android apps carry every engine inside. Only reading text from scans (OCR) downloads its language data the first time you use it.</p></details>
+      <details><summary>Which countries does it work for?</summary><p>All of them. ZenPDF Pro makes no assumptions about where you live. If you want checks for a particular country’s IDs, switch on a country pack or write your own rules in Settings › Form memory.</p></details>
+      <details><summary>How does Smart Autofill know my details?</summary><p>From a profile you save, or from any document you choose — a CV, a spreadsheet, or a form you filled before. You review every answer before it is written, and everything stays on your device.</p></details>
+      <details><summary>Windows or macOS says the app is from an unknown developer. Is it safe?</summary><p>Yes — that message appears for new apps without a paid signing certificate. On Windows choose <b>More info → Run anyway</b>; on macOS open <b>System Settings → Privacy &amp; Security</b> and click <b>Open Anyway</b>. You only do this once.</p></details>
+      <details><summary>Why is there no App Store download for iPhone?</summary><p>Apple only allows App Store installs. On iPhone and iPad, open ZenPDF Pro in Safari and choose <b>Share → Add to Home Screen</b> — it opens full-screen and works offline.</p></details>
+      <details><summary>How do I update?</summary><p>The apps tell you when a new version is ready. Download it from this page and install it over the old one — your files, profiles and memory stay.</p></details>
+    </div>
+  </section>
+
+  <section style="padding-top:10px">
+    <div class="wrap">
+      <div class="final rv">
+        <div class="glow"><i></i><i></i></div>
+        <h2>Get your PDFs <span class="grad">done.</span></h2>
+        <p class="lead" style="margin:14px auto 26px">Private, offline and ready on every device.</p>
+        <div class="cta" style="justify-content:center;margin:0">
+          <button class="btn btn-primary" id="final-dl"><span class="lbl">Download</span> <span class="meta"></span></button>
+          <a class="btn btn-ghost" data-try href="./">Try online</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 ZenPDF Pro · Built by H24 Creationz</span>
+    <span><a href="#" id="all-rel">All releases</a> · <a data-try href="./">Open the web app</a></span>
+  </div>
+</footer>
+
+<div class="sheet-bg" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="sheet">
+    <div class="state" id="sheet-state"><span class="spin"></span>Preparing your download…</div>
+    <h3 id="sheet-title">ZenPDF Pro</h3>
+    <div class="file"><svg width="34" height="34" aria-hidden="true"><use href="#zlogo"/></svg><div><b id="sheet-file"></b><span id="sheet-size"></span></div></div>
+    <ol id="sheet-steps"></ol>
+    <div class="row"><button class="btn btn-ghost" id="sheet-close">Done</button><a class="btn btn-primary" id="sheet-retry" href="#">Download again</a></div>
+    <p class="small" style="margin:14px 0 0">Need another device? <a href="#download" id="sheet-other">See all downloads</a></p>
+  </div>
+</div>
+
+<script>
+(function () {
+  /* ======= the repository and web-app address (worked out automatically on GitHub Pages) ======= */
+  var host = location.hostname, seg = location.pathname.split('/').filter(Boolean), gh = /\.github\.io$/.test(host);
+  var REPO = (gh ? host.split('.')[0] : 'harshavarthanep') + '/' + (gh && seg.length && !/\.html?$/.test(seg[0]) ? seg[0] : 'ZenPDF-Pro');
+  var TRY_URL = './';
+  /* ============================================================================================== */
+  var LATEST = 'https://github.com/' + REPO + '/releases/latest/download/';
+  document.getElementById('all-rel').href = 'https://github.com/' + REPO + '/releases';
+
+  var P = {
+    windows: { name: 'Windows', icon: 'win', req: 'Windows 10 or later · 64-bit, Intel &amp; AMD',
+      files: [{ label: 'Download installer', asset: 'ZenPDF-Pro-Setup-x64.exe' }, { label: 'Portable — no install', asset: 'ZenPDF-Pro-Portable.exe' }, { label: 'Windows on ARM', asset: 'ZenPDF-Pro-Setup-arm64.exe' }],
+      steps: ['Open <b>ZenPDF-Pro-Setup-x64.exe</b> from your Downloads.', 'If Windows shows “Windows protected your PC”, click <b>More info → Run anyway</b>.', 'ZenPDF Pro opens and appears in the Start menu — PDFs can open with it too.'] },
+    mac: { name: 'macOS', icon: 'mac', req: 'macOS 11 Big Sur or later · Apple silicon &amp; Intel',
+      files: [{ label: 'Download for Mac', asset: 'ZenPDF-Pro-Mac.dmg' }],
+      steps: ['Open <b>ZenPDF-Pro-Mac.dmg</b> and drag ZenPDF Pro into <b>Applications</b>.', 'Open ZenPDF Pro from Applications.', 'If macOS can’t check the developer, open <b>System Settings → Privacy &amp; Security</b> and click <b>Open Anyway</b>. You only do this once.'] },
+    linux: { name: 'Linux', icon: 'linux', req: '64-bit · Ubuntu 18.04, Debian 10, Fedora 32 or later',
+      files: [{ label: 'Download .deb — Ubuntu / Debian', asset: 'ZenPDF-Pro-Linux.deb' }, { label: 'Download AppImage', asset: 'ZenPDF-Pro-Linux.AppImage' }],
+      steps: ['<b>.deb:</b> double-click to install, or run <code>sudo apt install ./ZenPDF-Pro-Linux.deb</code>.', '<b>AppImage:</b> right-click → Properties → allow it to run as a program, then double-click it.', 'Find ZenPDF Pro in your app menu.'] },
+    android: { name: 'Android', icon: 'android', req: 'Android 6.0 or later',
+      files: [{ label: 'Download APK', asset: 'ZenPDF-Pro-Android.apk' }],
+      steps: ['Open <b>ZenPDF-Pro-Android.apk</b> from your notifications or Downloads.', 'If asked, allow your browser to <b>install unknown apps</b>.', 'Tap <b>Install</b>, then open ZenPDF Pro. Saved files go to Documents/ZenPDF Pro.'] },
+    ios: { name: 'iPhone & iPad', icon: 'ios', req: 'iOS &amp; iPadOS 15 or later · Safari', web: true,
+      steps: ['Open ZenPDF Pro in <b>Safari</b>.', 'Tap the <b>Share</b> button.', 'Tap <b>Add to Home Screen</b> — ZenPDF Pro now opens full-screen and works offline.'] },
+    web: { name: 'Web', icon: 'web', req: 'Current Chrome, Edge, Firefox or Safari', web: true,
+      steps: ['Open the web app — nothing to install.', 'In Chrome or Edge you can also <b>install</b> it from the address bar to get its own window.'] }
+  };
+  var ICONS = {
+    win: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3zm0 13 7.5 1.1v-7H3zM11.5 4.3 21 3v8.5h-9.5zm0 15.4L21 21v-8.4h-9.5z"/></svg>',
+    mac: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg>',
+    linux: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M12 15h5"/></svg>',
+    android: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 9h12v8a2 2 0 0 1-2 2h-1v3h-2v-3h-2v3H9v-3H8a2 2 0 0 1-2-2zm-3 0h2v7H3zm16 0h2v7h-2zM7.5 8a4.5 4.5 0 0 1 9 0z"/></svg>',
+    ios: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>',
+    web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>'
+  };
+
+  /* ---------- which device is the visitor on? ---------- */
+  var ua = navigator.userAgent;
+  var plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+  var mine = /android/i.test(ua) ? 'android'
+    : (/iPad|iPhone|iPod/.test(ua) || (/Mac/.test(plat) && navigator.maxTouchPoints > 1)) ? 'ios'
+    : (/Win/i.test(plat) || /Windows/i.test(ua)) ? 'windows'
+    : (/Mac/i.test(plat) || /Macintosh/.test(ua)) ? 'mac'
+    : /Linux|X11|CrOS/i.test(plat + ' ' + ua) ? 'linux' : 'web';
+  var armWin = mine === 'windows' && /arm/i.test(ua);
+
+  /* ---------- latest release: version, date, file sizes ---------- */
+  var release = null, releaseFailed = false;
+  function fmtSize(b) { return b >= 1e6 ? Math.round(b / 1e6) + ' MB' : Math.max(1, Math.round(b / 1e3)) + ' KB'; }
+  function asset(name) {
+    if (!release) return releaseFailed ? { url: LATEST + name, size: null, ok: true } : null;
+    var a = (release.assets || []).filter(function (x) { return x.name === name; })[0];
+    return a ? { url: a.browser_download_url, size: a.size, ok: true } : { ok: false };
+  }
+  function metaFor(a) { return !a ? '<span class="skel"></span>' : (a.ok ? (a.size ? fmtSize(a.size) : '') : 'Coming soon'); }
+
+  var grid = document.getElementById('dl-grid');
+  var order = ['windows', 'mac', 'linux', 'android', 'ios', 'web'];
+  order.sort(function (a, b) { return (b === mine) - (a === mine); });
+
+  function renderCards() {
+    grid.innerHTML = order.map(function (id) {
+      var p = P[id];
+      var btns = p.web
+        ? '<a class="btn btn-primary" data-try href="' + TRY_URL + '">' + (id === 'ios' ? 'Open in Safari' : 'Open the web app') + '</a>'
+        : p.files.map(function (f, i) {
+            var a = asset(f.asset);
+            return '<button class="btn ' + (i ? 'btn-ghost' : 'btn-primary') + '" data-platform="' + id + '" data-asset="' + i + '"' + (a && !a.ok ? ' disabled' : '') + '>' +
+              '<span class="lbl">' + f.label + '</span> <span class="meta">' + metaFor(a) + '</span></button>';
+          }).join('');
+      return '<div class="card os' + (id === mine ? ' mine' : '') + '" id="os-' + id + '">' +
+        '<span class="tag">Your device</span>' +
+        '<div class="top"><div class="ico">' + ICONS[p.icon] + '</div><h3>' + p.name + '</h3></div>' +
+        '<p class="req">' + p.req + '</p>' +
+        '<div class="btns">' + btns + '</div>' +
+        '<details><summary>How to install</summary><ol>' + p.steps.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol></details>' +
+        '</div>';
+    }).join('');
+  }
+  function renderHero() {
+    var p = P[mine], idx = armWin ? 2 : 0;
+    ['hero-dl', 'final-dl'].forEach(function (id) {
+      var b = document.getElementById(id);
+      b.dataset.platform = mine; b.dataset.asset = String(idx);
+      if (p.web) { b.querySelector('.lbl').textContent = mine === 'ios' ? 'Add to iPhone' : 'Open the web app'; b.querySelector('.meta').textContent = ''; b.disabled = false; return; }
+      var a = asset(p.files[idx].asset);
+      b.querySelector('.lbl').textContent = 'Download for ' + p.name;
+      b.querySelector('.meta').innerHTML = metaFor(a);
+      b.disabled = !!(a && !a.ok);
+    });
+    document.getElementById('hero-req').innerHTML = p.req;
+  }
+  function renderRelease() {
+    var el = document.getElementById('release');
+    if (release) {
+      var d = new Date(release.published_at || release.created_at);
+      el.innerHTML = '<span class="dot"></span> Latest <b>' + (release.name || release.tag_name) + '</b> · ' + d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) + ' · <a href="' + release.html_url + '">What’s new</a>';
+    } else el.innerHTML = '<a href="https://github.com/' + REPO + '/releases">See all releases</a>';
+  }
+
+  renderCards(); renderHero();
+  fetch('https://api.github.com/repos/' + REPO + '/releases/latest', { headers: { Accept: 'application/vnd.github+json' } })
+    .then(function (r) { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+    .then(function (j) { release = j; })
+    .catch(function () { releaseFailed = true; })
+    .then(function () { renderCards(); renderHero(); renderRelease(); });
+
+  /* ---------- download with clear feedback ---------- */
+  var sheet = document.getElementById('sheet'), stateEl = document.getElementById('sheet-state');
+  var lastUrl = '', timers = [];
+  function startDownload(btn) {
+    var id = btn.dataset.platform, p = P[id];
+    if (p.web) { location.href = TRY_URL; return; }
+    var f = p.files[+btn.dataset.asset || 0];
+    var a = asset(f.asset) || { url: LATEST + f.asset, size: null, ok: true };
+    if (!a.ok) return;
+    var label = btn.querySelector('.lbl'), meta = btn.querySelector('.meta');
+    var oldLabel = label.innerHTML, oldMeta = meta.innerHTML;
+    btn.classList.add('is-loading'); btn.setAttribute('aria-busy', 'true');
+    label.innerHTML = '<span class="spin"></span>'; meta.textContent = 'Preparing your download…';
+    lastUrl = a.url;
+    document.getElementById('sheet-title').textContent = 'ZenPDF Pro for ' + p.name;
+    document.getElementById('sheet-file').textContent = f.asset;
+    document.getElementById('sheet-size').textContent = a.size ? fmtSize(a.size) : '';
+    document.getElementById('sheet-steps').innerHTML = p.steps.map(function (s) { return '<li>' + s + '</li>'; }).join('');
+    document.getElementById('sheet-retry').href = a.url;
+    stateEl.innerHTML = '<span class="spin"></span>Starting your download…';
+    sheet.classList.add('open');
+    timers.forEach(clearTimeout); timers = [];
+    timers.push(setTimeout(function () { location.href = a.url; }, 650));
+    timers.push(setTimeout(function () {
+      stateEl.innerHTML = '<span class="check">✓</span>Your download has started — check your Downloads folder.';
+      btn.classList.remove('is-loading'); btn.removeAttribute('aria-busy'); label.innerHTML = oldLabel; meta.innerHTML = oldMeta;
+    }, 1900));
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('button[data-platform]');
+    if (b && !b.disabled) { e.preventDefault(); startDownload(b); }
+  });
+  function close() { sheet.classList.remove('open'); }
+  document.getElementById('sheet-close').onclick = close;
+  document.getElementById('sheet-other').onclick = close;
+  sheet.addEventListener('click', function (e) { if (e.target === sheet) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+  /* ---------- demo video: plays inside the page; three versions ---------- */
+  var vid = document.getElementById('demo-video'), vbox = document.getElementById('video');
+  [].forEach.call(document.querySelectorAll('.vtabs button'), function (b) {
+    b.addEventListener('click', function () {
+      [].forEach.call(document.querySelectorAll('.vtabs button'), function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      vbox.classList.toggle('vert', b.hasAttribute('data-vert'));
+      vid.poster = b.dataset.p; vid.src = b.dataset.v; vid.muted = true; vid.play().catch(function () {});
+    });
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.isIntersecting) vid.play().catch(function () {}); else vid.pause(); }); }, { threshold: .3 }).observe(vbox);
+  }
+
+  /* ---------- gentle reveal on scroll ---------- */
+  var rv = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) [].forEach.call(rv, function (e) { e.classList.add('in'); });
+  else { var ob = new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); ob.unobserve(x.target); } }); }, { threshold: .12 }); [].forEach.call(rv, function (e) { ob.observe(e); }); }
+})();
+</script>
+</body>
+</html>
