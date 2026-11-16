@@ -370,7 +370,8 @@ footer a{color:var(--muted)}
 <footer>
   <div class="wrap">
     <span>© 2026 ZenPDF Pro · Built by H24 Creationz</span>
-    <span><a href="#" id="all-rel">All releases</a> · <a data-try href="./">Open the web app</a></span>
+    <!-- <span><a href="#" id="all-rel">All releases</a> · <a data-try href="./">Open the web app</a></span> -->
+    <span><a data-try href="./">Open the web app</a></span>
   </div>
 </footer>
 
@@ -482,7 +483,8 @@ footer a{color:var(--muted)}
     var el = document.getElementById('release');
     if (release) {
       var d = new Date(release.published_at || release.created_at);
-      el.innerHTML = '<span class="dot"></span> Latest <b>' + (release.name || release.tag_name) + '</b> · ' + d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) + ' · <a href="' + release.html_url + '">What’s new</a>';
+      // el.innerHTML = '<span class="dot"></span> Latest <b>' + (release.name || release.tag_name) + '</b> · ' + d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) + ' · <a href="' + release.html_url + '">What’s new</a>';
+         el.innerHTML = '<span class="dot"></span> Latest <b>' + (release.name || release.tag_name) + '</b> · ' + d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
     } else el.innerHTML = '<a href="https://github.com/' + REPO + '/releases">See all releases</a>';
   }
 
